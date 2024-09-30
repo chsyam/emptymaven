@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empty-maven-app
+  namespace: s3
+  labels:
+    app: empty-maven-app
+spec:
+  selector:
+    matchLabels:
+      app: empty-maven-app
+  template:
+    metadata:
+      labels:
+        app: empty-maven-app
+    spec:
+      containers:
+      - name: empty-maven-app
+        image: 10.63.20.34:80/empty-maven:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
